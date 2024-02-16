@@ -20,7 +20,7 @@ const Navigation = () => {
           headerShown: false,
         }}
       >
-        {Object.keys(user ?? {}).length === 0 ? (
+        {!user ? (
           <Stack.Group>
             <Stack.Screen name="SignIn" component={SignIn} />
             <Stack.Screen name="SignUp" component={SignUp} />

@@ -9,22 +9,22 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../SignIn/redux/SignInSlice";
 
 const useSignUp = () => {
+  // init states
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isSigningUp, setIsSigningUp] = useState<boolean>(false);
-
   const [isPasswordHidden, setIsPasswordHidden] = useState<boolean>(true);
   const [isConfirmPasswordHidden, setIsConfirmPasswordHidden] =
     useState<boolean>(true);
 
+  // update states
   const handleNameChanged = (name: string) => setName(name);
   const handleEmailChanged = (email: string) => setEmail(email);
   const handlePasswordChanged = (password: string) => setPassword(password);
   const handleConfirmPassword = (confirmPassword: string) =>
     setConfirmPassword(confirmPassword);
-
   const handleTogglePasswordHidden = () =>
     setIsPasswordHidden(!isPasswordHidden);
   const handleToggleConfirmPasswordHidden = () =>
@@ -40,6 +40,7 @@ const useSignUp = () => {
     setIsConfirmPasswordHidden(true);
   };
 
+  // invalidate and sign up user
   const signUpUser = () =>
     invalidateInputAndRedirect(
       true,
@@ -51,6 +52,7 @@ const useSignUp = () => {
       confirmPassword
     );
 
+  // signing up user call
   const sendCreateRequest = async () => {
     try {
       setIsSigningUp(true);

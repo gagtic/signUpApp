@@ -7,9 +7,11 @@ import { ResizeMode, Video } from "expo-av";
 import { styles } from "../styles";
 
 const useBrowse = () => {
+  // getting user from redux
   const user = useSelector((state: RootState) => state.user.value);
   const navigation = useNavigation();
 
+  //rendering list item
   const renderItem = ({
     item,
   }: {
@@ -38,6 +40,7 @@ const useBrowse = () => {
     );
   };
 
+  // render view if no items in list
   const renderNoItems = () => {
     return (
       <View style={styles.noContentContainer}>

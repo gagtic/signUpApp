@@ -15,6 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const useWelcome = () => {
+  // init states
   const [media, setMedia] = useState<ImagePicker.ImagePickerAsset>();
   const [isUploadingMedia, setIsUploadingMedia] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
@@ -24,10 +25,7 @@ const useWelcome = () => {
 
   const navigation = useNavigation();
 
-  useEffect(() => {
-    console.log("media", user?.media);
-  }, [user]);
-
+  // picking image from picker
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -45,6 +43,7 @@ const useWelcome = () => {
     dispatch(resetUser());
   };
 
+  // adding media url to user list (firebase + redux)
   const addMediaToUserList = async (mediaUrl: string) => {
     try {
       const documentRef = doc(firestore, "users", user?.uid ?? "");
@@ -67,6 +66,7 @@ const useWelcome = () => {
     }
   };
 
+  // uploading media to server
   const uploadMedia = async () => {
     try {
       if (media) {

@@ -10,24 +10,24 @@ import { doc, getDoc } from "firebase/firestore";
 
 const useSignIn = () => {
   const dispatch = useDispatch();
+
+  // init states
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
   const [isPasswordHidden, setIsPasswordHidden] = useState<boolean>(true);
   const [isSigningIn, setIsSigningIn] = useState<boolean>(false);
 
+  // updating states
   const handleEmailChanged = (email: string) => setEmail(email);
   const handlePasswordChanged = (password: string) => setPassword(password);
-
   const handleTogglePasswordHidden = () =>
     setIsPasswordHidden(!isPasswordHidden);
-
-  const navigation = useNavigation();
-
-  const handleSignUpPressed = () => navigation.navigate("SignUp");
-
   const hidePassword = () => setIsPasswordHidden(true);
 
+  const navigation = useNavigation();
+  const handleSignUpPressed = () => navigation.navigate("SignUp");
+
+  //login
   const doLogin = async () => {
     try {
       setIsSigningIn(true);
@@ -53,6 +53,7 @@ const useSignIn = () => {
     }
   };
 
+  // invalidate user input and then sign in
   const signInUser = () =>
     invalidateInputAndRedirect(false, email, password, hidePassword, doLogin);
 
