@@ -4,7 +4,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { firestore, makeRandomString } from "../../../utils/firebase";
 import { Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
