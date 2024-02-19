@@ -1,11 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+export interface IMedia {
+  url: string;
+  type: string;
+}
 interface IUser {
   email: string;
   name: string;
   uid: string;
-  media: { url: string; type: string };
+  media: IMedia;
 }
 
 export interface UserState {

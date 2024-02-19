@@ -6,11 +6,13 @@ import { styles } from "./styles";
 import useBrowse from "./hooks/useBrowse";
 
 const Browse = () => {
-  const { user, renderItem, renderNoItems, handleBackPressed } = useBrowse();
+  const { user, keyExtractor, renderItem, renderNoItems, handleBackPressed } =
+    useBrowse();
 
   return (
     <View style={styles.container}>
       <FlatList
+        keyExtractor={keyExtractor}
         ListEmptyComponent={renderNoItems}
         data={user?.media}
         renderItem={renderItem}

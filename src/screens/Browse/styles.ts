@@ -21,15 +21,6 @@ export const styles = StyleSheet.create({
     padding: widthPercentageToDP(2),
   },
   title: { color: "white", fontSize: widthPercentageToDP(8) },
-  image: {
-    width: widthPercentageToDP(50),
-    height: widthPercentageToDP(50),
-  },
-  video: {
-    width: widthPercentageToDP(50),
-    height: widthPercentageToDP(50),
-  },
-
   noContentContainer: {
     height: heightPercentageToDP(100),
     alignItems: "center",

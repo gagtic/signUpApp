@@ -5,11 +5,16 @@ import { RootState } from "../../../redux/store/store";
 import { Image, Text, View } from "react-native";
 import { ResizeMode, Video } from "expo-av";
 import { styles } from "../styles";
+import { IMedia } from "../../SignIn/redux/SignInSlice";
+import BrowseItem from "../components/BrowseItem";
 
 const useBrowse = () => {
   // getting user from redux
   const user = useSelector((state: RootState) => state.user.value);
   const navigation = useNavigation();
+
+  //key extractor for the flatlist
+  const keyExtractor = (item: IMedia, index: number) => index.toString();
 
   //rendering list item
   const renderItem = ({
@@ -17,28 +22,7 @@ const useBrowse = () => {
   }: {
     item: { url: string; type: string };
     index: number;
-  }) => {
-    return (
-      <View>
-        {item?.type === "image" ? (
-          <Image
-            source={{ uri: item.url }}
-            style={styles.image}
-            resizeMode={"contain"}
-          />
-        ) : (
-          <Video
-            style={styles.video}
-            source={{
-              uri: item?.url,
-            }}
-            useNativeControls
-            resizeMode={ResizeMode.COVER}
-          />
-        )}
-      </View>
-    );
-  };
+  }) => <BrowseItem item={item} />;
 
   // render view if no items in list
   const renderNoItems = () => {
@@ -53,6 +37,7 @@ const useBrowse = () => {
 
   return {
     user,
+    keyExtractor,
     renderItem,
     renderNoItems,
     handleBackPressed,
